@@ -1,9 +1,18 @@
 import React from "react";
 import "./Login.css";
-export const Login = () => {
+
+export const Login = (props) => {
+  const clickHandler = (event) => {
+    event.preventDefault();
+    props.click();
+  };
+  const clickForgotHandler = (event) => {
+    event.preventDefault();
+    props.clickForgot();
+  };
   return (
     <div className="login-div">
-      <form action="">
+      <form action="" method="POST">
         <h2>Log in</h2>
         <div className="form-group">
           <label htmlFor="firstName">Username/ Email</label>
@@ -15,7 +24,7 @@ export const Login = () => {
             placeholder="Username/ Email"
           />
         </div>
-        
+
         <div className="form-group">
           <label htmlFor="password">Password</label>
           <input
@@ -26,12 +35,20 @@ export const Login = () => {
             placeholder="Password"
           />
         </div>
-        
+
         <button type="submit" className="btn btn-primary btn-block">
           Log in
         </button>
         <p className="login-forgot-password">
-          Forgot <a href="#">password?</a>
+          Don't have an account?{" "}
+          <a href="/" onClick={clickHandler}>
+            Create here
+          </a>
+        </p>
+        <p className="login-forgot-password">
+          <a href="/" onClick={clickForgotHandler}>
+            Forgot password?
+          </a>
         </p>
       </form>
     </div>
